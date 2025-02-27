@@ -1,0 +1,93 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .left-section {
+    flex: 40%; /* 40% width */
+    background-color: #708FD0; /* Updated color */
+    color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .left-section h1 {
+    margin-bottom: 20px;
+  }
+  
+  .left-section p {
+    font-size: 1.2em;
+  }
+  
+  .right-section {
+    flex: 60%; /* 60% width */
+    background-color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .job-selection {
+    margin-bottom: 20px; /* Added margin to separate from the form */
+  }
+  
+  .job-selection p {
+    margin-bottom: 10px;
+  }
+  
+  .job-selection label {
+    display: block;
+    margin: 5px 0;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-form label {
+    margin-top: 10px;
+  }
+  
+  .login-form input {
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .login-form button {
+    padding: 10px;
+    background-color: #708FD0; /* Updated color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .login-form button:hover {
+    background-color: #5a7bbd; /* Darker shade for hover */
+  }
+  
+  .social-login {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  footer {
+    margin-top: 40px;
+    font-size: 0.8em;
+    text-align: center;
+  }
