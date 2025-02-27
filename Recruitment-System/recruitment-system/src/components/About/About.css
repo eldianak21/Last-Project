@@ -1,0 +1,27 @@
+/* About.css */
+.about-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto; /* Center the content */
+    text-align: left; /* Align text to the left */
+}
+
+.about-container h1 {
+    color: #5a7bbd; /* Heading color */
+    margin-bottom: 20px;
+}
+
+.about-container h2 {
+    color: #333; /* Subheading color */
+    margin-top: 20px;
+}
+
+.about-container p, 
+.about-container ul {
+    margin-bottom: 15px; /* Space between paragraphs and lists */
+}
+
+.about-container ul {
+    list-style-type: disc; /* Bullet points for list */
+    padding-left: 20px; /* Indent list */
+}
