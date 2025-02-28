@@ -9,7 +9,8 @@ const Home = () => {
         <div className="home-container">
             <header className="header">
                 <div className="header-content">
-                    <h1>Welcome to Jimma University Recruitment Hub</h1>
+                    <h1>Welcome to Jimma University</h1>
+                    <h1>Recruitment Hub</h1>
                     <p>Your gateway to finding the best opportunities at Jimma University.</p>
                     <button className="action-button">Get Started</button>
                 </div>
