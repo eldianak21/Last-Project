@@ -5,27 +5,49 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
-.login-container {
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.left-section {
+    flex: 40%; /* 40% width */
+    background-color: #708FD0; /* Updated color */
+    color: white;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 20px;
-    background-color: #f9f9f9; /* Light background color */
+}
+
+.left-section h1 {
+    margin-bottom: 20px;
+}
+
+.left-section p {
+    font-size: 1.2em;
+}
+
+.right-section {
+    flex: 60%; /* 60% width */
+    background-color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 h1 {
     margin-bottom: 20px;
     font-size: 24px;
-    text-align: center;
+    text-align: left; /* Align left for consistency */
 }
 
 .login-form {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 400px; /* Set a max width */
+    max-width: 700px; /* Set a max width */
 }
 
 .login-form label {
@@ -71,4 +93,29 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack sections vertically */
+        height: auto; /* Allow height to adjust */
+    }
+
+    .left-section,
+    .right-section {
+        flex: 100%; /* Full width on mobile */
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+
+    .left-section h1 {
+        font-size: 1.5em; /* Slightly smaller font size */
+    }
+
+    .login-form {
+        max-width: 100%; /* Allow full width in mobile view */
+    }
+}
+.forgot-password{
+    align-items: center;
 }

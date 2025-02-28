@@ -1,12 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './SignUp.css';
 
 const SignUp = () => {
-    const handleGoogleSignIn = () => {
-        // This function should handle Google sign-in
-        window.open("https://accounts.google.com/o/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=token&scope=email", "_self");
-    };
-
     return (
         <div className="container">
             <div className="left-section">
@@ -37,12 +33,11 @@ const SignUp = () => {
                     <button type="submit">SIGN IN</button>
                 </form>
 
-                <div className="social-login">
-                    <p>OR Sign in using</p>
-                    <button onClick={handleGoogleSignIn} className="google-sign-in">
-                        <span className="material-icons" style={{ marginRight: '8px' }}>login</span>
-                        Sign in with Google
-                    </button>
+                <div className="login-redirect">
+                    <p>Already have an account?</p>
+                    <Link to="/login" className="login-button">
+                        <button>Login</button>
+                    </Link>
                 </div>
 
                 <footer>
