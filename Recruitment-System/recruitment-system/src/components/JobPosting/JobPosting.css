@@ -1,18 +1,26 @@
 .job-posting-container {
     font-family: Arial, sans-serif;
     padding: 20px;
-    max-width: 800px;
+    max-width: 1000px;
     margin: auto;
 }
 
 .header {
     text-align: center;
     margin-bottom: 40px;
+    background-color: #5a7bbd;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex; /* Added flexbox */
+    flex-direction: column; /* Added flex direction to column */
+    align-items: center; /* Added to center items horizontally */
 }
 
 .header h1 {
+    align-items: center;
     font-size: 2.5em;
     margin-bottom: 10px;
+    color: white;
 }
 
 .header p {
@@ -37,15 +45,16 @@
 
 .filters {
     display: flex;
-    justify-content: center;
     margin-bottom: 30px;
+    width: 100%;
 }
 
 .filter-input {
     padding: 10px;
-    margin: 0 10px;
+    margin: 0 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    flex-grow: 1;
 }
 
 .search-button {
@@ -55,6 +64,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .job-listings {

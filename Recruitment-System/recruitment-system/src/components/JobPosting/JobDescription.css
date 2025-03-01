@@ -1,0 +1,90 @@
+/* JobDescription.css */
+.job-description-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.job-description-container h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    font-weight: bold; /* Make the title bold */
+}
+
+.job-description-container p {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.job-description-container h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.job-description-container .job-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.apply-button,
+.share-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.apply-button {
+    background-color: #5a7bbd;
+    color: white;
+}
+
+.share-button {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.social-media-icons {
+    margin: 15px 0;
+    font-size: 1.5em;
+}
+
+.social-media-icons i {
+    margin-right: 15px;
+    cursor: pointer;
+    color: #333;
+}
+
+.job-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.job-details-table td {
+    padding: 15px;
+    vertical-align: top;
+}
+
+.job-description {
+    width: 70%; /* Takes 70% of the table width */
+}
+
+.job-info {
+    width: 30%; /* Takes 30% of the table width */
+    border-left: 1px solid #e0e0e0;
+}
+
+.job-info h3 {
+    margin-top: 0;
+}
+
+.apply-button {
+    margin-top: 20px;
+}

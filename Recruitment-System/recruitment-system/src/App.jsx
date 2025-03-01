@@ -10,6 +10,7 @@ import ForgotPassword from './Auth/ForgotPassword';
 import JobPosting from './components/JobPosting/JobPosting';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
+import JobDescription from './components/JobPosting/JobDescription';
 const App = () => {
     return (
         <Router>
@@ -21,6 +22,7 @@ const App = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/job-posting" element={<JobPosting />} />
+                <Route path="/job-description/:id" element={<JobDescription/>} />
                 <Route path="/contact-us" element={<Contact />} />
             </Routes>
             <Footer/>
