@@ -1,7 +1,6 @@
 // JobDescription.jsx
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import './JobDescription.css';
 
 const JobDescription = () => {
@@ -26,7 +25,7 @@ const JobDescription = () => {
             title: 'Web Developer',
             description: 'Develop and maintain web applications, ensuring optimal performance.',
             postedDate: '1/24/2025',
-            employmentType: 'Full-Time',
+            employmentType: 'Part-Time', // Example of a part-time job
             remote: 'Yes',
         },
     };
@@ -36,21 +35,23 @@ const JobDescription = () => {
     return (
         <div className="job-description-container">
             <header className="job-header">
+                <h2>JIMMA UNIVERSITY | {job.employmentType}</h2> {/* Dynamic Employment Type */}
                 <h1>{job.title}</h1>
+               
                 <div className="job-buttons">
                     <button className="apply-button">I'm interested</button>
                     <button className="share-button">Share job via email</button>
-                </div>
-                <p className="job-listing">job posting &gt; job detail</p>
+                </div>          
             </header>
 
             <div className="social-media-icons">
-    <i className="fab fa-facebook-square"></i>
-    <i className="fab fa-linkedin"></i>
-    <i className="fab fa-whatsapp"></i>
-    <i className="fab fa-telegram-plane"></i>
-    <i className="fas fa-share-alt"></i>
-</div>
+                <i className="fab fa-facebook-square"></i>
+                <i className="fab fa-linkedin"></i>
+                <i className="fab fa-whatsapp"></i>
+                <i className="fab fa-telegram-plane"></i>
+                <i className="fas fa-share-alt"></i>
+            </div>
+            <p className="job-listing">job posting &gt; job detail</p>
 
             <table className="job-details-table">
                 <tbody>

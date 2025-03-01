@@ -9,10 +9,22 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.job-description-container h1 {
-    font-size: 2em;
+.job-header {
+    text-align: center; /* Center both h2 and h1 */
+    margin-bottom: 20px;
+}
+
+.job-description-container h2 {
+    font-size: 1.5em;
     margin-bottom: 10px;
-    font-weight: bold; /* Make the title bold */
+    color: #333; /* Optional: Set a color for better visibility */
+}
+
+.job-description-container h1 {
+    font-size: 2.5em; /* Increased size for better visibility */
+    margin: 0; /* Remove default margin */
+    width: 100%; /* Ensure full width */
+    color: #333; /* Set a color for better visibility */
 }
 
 .job-description-container p {
@@ -26,18 +38,26 @@
 }
 
 .job-description-container .job-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center the buttons */
+    gap: 10px; /* Add space between buttons if needed */
+    margin-bottom: 20px; /* Bottom margin for spacing */
 }
 
 .apply-button,
 .share-button {
-    padding: 10px 15px;
+    padding: 10px; /* Padding for better touch area */
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
+    flex: 1; /* Allow buttons to grow equally */
+    min-width: 150px; /* Minimum width for buttons */
+    height: 50px; /* Fixed height for equal sizing */
+    display: flex; /* Enable flexbox for centering text */
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+    margin: 0; /* Remove margin to eliminate extra space */
 }
 
 .apply-button {
@@ -46,6 +66,7 @@
 }
 
 .share-button {
+    margin-top: 20px;
     background-color: #f0f0f0;
     color: #333;
 }
@@ -53,10 +74,11 @@
 .social-media-icons {
     margin: 15px 0;
     font-size: 1.5em;
+    text-align: center; /* Center social media icons */
 }
 
 .social-media-icons i {
-    margin-right: 15px;
+    margin: 0 15px; /* Space between icons */
     cursor: pointer;
     color: #333;
 }
@@ -73,11 +95,11 @@
 }
 
 .job-description {
-    width: 70%; /* Takes 70% of the table width */
+    width: 70%;
 }
 
 .job-info {
-    width: 30%; /* Takes 30% of the table width */
+    width: 30%;
     border-left: 1px solid #e0e0e0;
 }
 
