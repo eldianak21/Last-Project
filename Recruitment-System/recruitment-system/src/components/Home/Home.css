@@ -71,9 +71,15 @@ body {
     text-align: left; /* Align text to the left */
     padding: 20px; /* Add padding for better spacing */
 }
+.features-left h2 {
+    color: #5a7bbd;
+}
 
 .features-right {
     width: 50%; /* Adjust width for right side */
+}
+.features-right h2 {
+    color: #5a7bbd;
 }
 
 .feature-item {

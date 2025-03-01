@@ -1,27 +1,102 @@
-/* About.css */
-.about-container {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto; /* Center the content */
-    text-align: left; /* Align text to the left */
+.about-page {
+    background-color: #5a7bbd;
+    padding: 40px;
+    font-family: 'Arial', sans-serif;
 }
 
-.about-container h1 {
-    color: #5a7bbd; /* Heading color */
+.hero-section {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 20px;
+    background: linear-gradient(to right, white, #5a7bbd );
+    border-radius: 10px;
+}
+
+.hero-section h1 {
+    font-size: 36px;
+    color: white;
+}
+
+.hero-section p {
+    font-size: 18px;
+    color: white;
+    margin-top: 10px;
+}
+
+.mission, .team, .values, .cta {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.mission h2, .team h2, .values h2, .cta h2 {
+    font-size: 28px;
+    color: white;
     margin-bottom: 20px;
 }
-
-.about-container h2 {
-    color: #333; /* Subheading color */
-    margin-top: 20px;
+.mission p {
+    color: white;
 }
 
-.about-container p, 
-.about-container ul {
-    margin-bottom: 15px; /* Space between paragraphs and lists */
+.team-member {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.about-container ul {
-    list-style-type: disc; /* Bullet points for list */
-    padding-left: 20px; /* Indent list */
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.team-member h3 {
+    font-size: 24px;
+    color: #5a7bbd;
+}
+
+.team-member p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.values ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.values li {
+    margin: 10px 0;
+    font-size: 18px;
+    color: black;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.values li:hover {
+    background-color: #aed6f1   ;
+    color: white;
+}
+
+.cta {
+    margin: 40px 0;
+}
+
+.cta-button {
+    background-color: white  ;
+    color: #5a7bbd;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #aed6f1;
+    transform: scale(1.05);
 }

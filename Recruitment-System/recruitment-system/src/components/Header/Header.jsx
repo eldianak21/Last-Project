@@ -1,8 +1,7 @@
-// Header.jsx
 import React from 'react';
-import './Header.css'; // Create a Header.css file for styles
-import { FaSearch, FaUserCircle } from 'react-icons/fa'; // Import icons
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import './Header.css';
+import { FaSearch, FaUserCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -11,16 +10,15 @@ const Header = () => {
                 <h1 className="logo">Jimma University</h1>
                 <nav className="nav-links">
                     <ul>
-                        <li>Home</li>
-                        <li>About Us</li>
-                        <li>Features</li>
-                        <li>Contact</li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/about">About Us</Link></li>
+                        <li><Link to="/job-posting">Job Posting</Link></li>
+                        <li><Link to="/contact-us">Contact</Link></li> {/* Link to the Contact page */}
                     </ul>
                 </nav>
                 <div className="search-account">
                     <input type="text" placeholder="Search..." className="search-bar" />
                     <FaSearch className="search-icon" />
-                    {/* Link to the SignUp page */}
                     <Link to="/sign-up">
                         <FaUserCircle className="account-icon" />
                     </Link>
