@@ -58,9 +58,9 @@ const Home = () => {
                 </div>
             </section>
 
-            <footer className="footer">
+            {/* <footer className="footer">
                 <p>© 2024 Jimma University. All Rights Reserved.</p>
-            </footer>
+            </footer> */}
         </div>
     );
 };

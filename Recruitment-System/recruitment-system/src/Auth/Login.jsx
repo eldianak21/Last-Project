@@ -23,9 +23,9 @@ const Login = () => {
                     <p><a href="/forgot-password">Forgot Password?</a></p>
                 </div>
 
-                <footer>
+                {/* <footer>
                     <p>© 2024 Jimma University. All Rights Reserved.</p>
-                </footer>
+                </footer> */}
             </div>
         </div>
     );

@@ -9,6 +9,7 @@ import Login from './Auth/Login';
 import ForgotPassword from './Auth/ForgotPassword';
 import JobPosting from './components/JobPosting/JobPosting';
 import Contact from './components/Contact/Contact';
+import Footer from './components/Footer/Footer';
 const App = () => {
     return (
         <Router>
@@ -21,9 +22,8 @@ const App = () => {
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/job-posting" element={<JobPosting />} />
                 <Route path="/contact-us" element={<Contact />} />
-               
-               
             </Routes>
+            <Footer/>
         </Router>
     );
 };

@@ -40,9 +40,9 @@ const SignUp = () => {
                     </Link>
                 </div>
 
-                <footer>
+                {/* <footer>
                     <p>© 2024 Jimma University. All Rights Reserved.</p>
-                </footer>
+                </footer> */}
             </div>
         </div>
     );

@@ -62,7 +62,7 @@ const Contact = () => {
                     <button type="submit">Send Message</button>
                 </form>
             </section>
-            <section className="contact-info">
+            {/* <section className="contact-info">
                 <h2>Our Contact Information</h2>
                 <p>
                     <strong>Address:</strong> Jimma University, Jimma, Ethiopia
@@ -74,7 +74,7 @@ const Contact = () => {
                     <strong>Email:</strong>{' '}
                     <a href="mailto:ero@ju.edu.et">ero@ju.edu.et</a>
                 </p>
-            </section>
+            </section> */}
         </div>
     );
 };
