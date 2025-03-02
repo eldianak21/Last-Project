@@ -1,6 +1,6 @@
 // JobDescription.jsx
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom'; // Import Link for navigation
 import './JobDescription.css';
 
 const JobDescription = () => {
@@ -23,9 +23,9 @@ const JobDescription = () => {
         },
         3: {
             title: 'Web Developer',
-            description: 'Develop and maintain web applications, ensuring optimal performance.',
+            description: 'Develop and maintain responsive web applications. Write clean, efficient code using modern JavaScript frameworks. Collaborate with designers and product managers to implement user interfaces and features. Troubleshoot and debug issues, ensuring optimal performance and security. Stay updated with emerging web technologies.',
             postedDate: '1/24/2025',
-            employmentType: 'Part-Time', // Example of a part-time job
+            employmentType: 'Part-Time',
             remote: 'Yes',
         },
     };
@@ -37,11 +37,13 @@ const JobDescription = () => {
             <header className="job-header">
                 <h2>JIMMA UNIVERSITY | {job.employmentType}</h2> {/* Dynamic Employment Type */}
                 <h1>{job.title}</h1>
-               
+
                 <div className="job-buttons">
-                    <button className="apply-button">I'm interested</button>
+                    <Link to="/sign-up"> {/* Link to Signup/Login page */}
+                        <button className="apply-button">I'm interested</button>
+                    </Link>
                     <button className="share-button">Share job via email</button>
-                </div>          
+                </div>
             </header>
 
             <div className="social-media-icons">
@@ -70,7 +72,9 @@ const JobDescription = () => {
                 </tbody>
             </table>
 
-            <button className="apply-button">I'm interested</button>
+            <Link to="/sign-up"> {/* Link to Signup/Login page */}
+                <button className="apply-button">I'm interested</button>
+            </Link>
         </div>
     );
 };
