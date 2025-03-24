@@ -132,3 +132,34 @@ footer {
       max-width: 100%; /* Allow full width in mobile view */
   }
 }
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+}
+
+.signup-form label {
+  margin-top: 10px;
+}
+
+.signup-form input {
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.signup-form button {
+  padding: 10px;
+  background-color: #708FD0; /* Updated color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.signup-form button:hover {
+  background-color: #5a7bbd; /* Darker shade for hover */
+}
