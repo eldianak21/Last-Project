@@ -8,11 +8,13 @@ import SignUp from './Auth/SignUp';
 import Login from './Auth/Login';
 import JobPosting from './components/JobPosting/JobPosting';
 import JobDescription from './components/JobPosting/JobDescription';
+import Contact from './components/Contact/Contact';
+import About from './components/About/About';
 import CVSubmission from './Auth/CVSubmission';
 import { AuthProvider } from './Auth/AuthContext';
 import Footer from './components/Footer/Footer';
 import ForgotPassword from './Auth/ForgotPassword';
-import UserDashboard from './components/Home/User/UserDashboard';
+import UserDashboard from './pages/User/UserDashboard';
 
 const App = () => {
     return (
@@ -23,7 +25,8 @@ const App = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/sign-up" element={<SignUp />} />
                     <Route path="/login" element={<Login />} />
-            
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
                     <Route path="/forgot-password" element={< ForgotPassword/>} />
                     <Route path="/job-posting" element={<JobPosting />} />
                     <Route path="/job-description/:id" element={<JobDescription />} />
