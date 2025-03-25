@@ -1,12 +1,18 @@
+// src/Auth/Login.jsx
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom'; // Ensure Link is imported
+import { useAuth } from './AuthContext';
 import './Login.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault();
 
         const response = await fetch('http://localhost:5000/api/login', {
             method: 'POST',
@@ -16,45 +22,47 @@ const Login = () => {
             body: JSON.stringify({ username: email, password }),
         });
 
-        const data = await response.json();
-        console.log(data); // Handle response from the server
+        if (!response.ok) {
+            const errorData = await response.json();
+            setErrorMessage(errorData.message || 'Login failed. Please try again.');
+            return;
+        }
+
+        login(); // Log in the user
+        navigate('/submit-cv'); // Redirect to CV submission after successful login
     };
 
     return (
         <div className="container">
             <div className="left-section">
-                <h1>Welcome to Jimma University Recruitment Hub</h1>
-                <p>Log in to access powerful tools for managing candidates, scheduling interviews, and tracking progress—all in one place.</p>
+                <h1>Welcome Back</h1>
+                <p>Please log in to continue</p>
             </div>
             <div className="right-section">
-                <h1>Sign in to access Recruit</h1>
                 <form className="login-form" onSubmit={handleSubmit}>
-                    <label htmlFor="email">Email address</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                    <label>Email</label>
+                    <input 
+                        type="email" 
+                        value={email} 
+                        onChange={(e) => setEmail(e.target.value)} 
+                        required 
                     />
-
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                    <label>Password</label>
+                    <input 
+                        type="password" 
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        required 
                     />
-                    
+                    {errorMessage && <p className="error-message">{errorMessage}</p>}
                     <button type="submit" className="next-button">Next</button>
                 </form>
-
-                <div className="forgot-password">
-                    <p><a href="/forgot-password">Forgot Password?</a></p>
-                </div>
+                <p className="forgot-password">
+                    <Link to="/forgot-password">Forgot Password?</Link>
+                </p>
+                <p className="sign-up">
+                    Don't have an account? <Link to="/sign-up">Sign up here</Link>
+                </p>
             </div>
         </div>
     );
