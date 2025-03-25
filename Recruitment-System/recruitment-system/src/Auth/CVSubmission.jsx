@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import './CVSubmission.css';
+import React, { useState } from "react";
+import "./CVSubmission.css";
 
 const CVSubmission = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    phone1: '',
-    phone2: '',
-    firstName: '',
-    lastName: '',
-    city: '',
-    street: '',
-    country: '',
-    province: '',
-    experienceYears: '',
-    highestQualification: '',
-    held: '',
-    expectedSalary: '',
-    linkedIn: '',
-    twitter: '',
-    skillSet: '',
+    email: "",
+    phone1: "",
+    phone2: "",
+    firstName: "",
+    lastName: "",
+    city: "",
+    street: "",
+    country: "",
+    province: "",
+    experienceYears: "",
+    highestQualification: "",
+    held: "",
+    expectedSalary: "",
+    linkedIn: "",
+    twitter: "",
+    skillSet: "",
     resume: null,
     offer: null,
-    cv: null
+    cv: null,
   });
 
   const [errors, setErrors] = useState({});
@@ -31,26 +31,32 @@ const CVSubmission = () => {
     const { name, value, files } = e.target;
     setFormData({
       ...formData,
-      [name]: files ? files[0] : value
+      [name]: files ? files[0] : value,
     });
   };
 
   const validateForm = () => {
     const newErrors = {};
     const requiredFields = [
-      'email', 'phone1', 'firstName', 'lastName', 
-      'city', 'country', 'experienceYears', 'highestQualification'
+      "email",
+      "phone1",
+      "firstName",
+      "lastName",
+      "city",
+      "country",
+      "experienceYears",
+      "highestQualification",
     ];
 
-    requiredFields.forEach(field => {
+    requiredFields.forEach((field) => {
       if (!formData[field]) {
-        newErrors[field] = 'This field is required';
+        newErrors[field] = "This field is required";
       }
     });
 
     // Validate email format
     if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
+      newErrors.email = "Please enter a valid email";
     }
 
     setErrors(newErrors);
@@ -62,11 +68,11 @@ const CVSubmission = () => {
     if (validateForm()) {
       setIsSubmitting(true);
       // Here you would typically send the data to your backend
-      console.log('Form submitted:', formData);
+      console.log("Form submitted:", formData);
       // Simulate API call
       setTimeout(() => {
         setIsSubmitting(false);
-        alert('Form submitted successfully!');
+        alert("Form submitted successfully!");
       }, 1000);
     }
   };
@@ -80,8 +86,8 @@ const CVSubmission = () => {
           <div className="form-column left">
             <div className="form-group">
               <label>Email*</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
@@ -90,10 +96,10 @@ const CVSubmission = () => {
             </div>
             <div className="form-group">
               <label>Phone*</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="phone1"
-                placeholder="(+231)" 
+                placeholder="(+231)"
                 value={formData.phone1}
                 onChange={handleChange}
               />
@@ -101,10 +107,10 @@ const CVSubmission = () => {
             </div>
             <div className="form-group">
               <label>Phone</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="phone2"
-                placeholder="(+231)" 
+                placeholder="(+231)"
                 value={formData.phone2}
                 onChange={handleChange}
               />
@@ -113,23 +119,27 @@ const CVSubmission = () => {
           <div className="form-column right">
             <div className="form-group">
               <label>First Name*</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
               />
-              {errors.firstName && <span className="error">{errors.firstName}</span>}
+              {errors.firstName && (
+                <span className="error">{errors.firstName}</span>
+              )}
             </div>
             <div className="form-group">
               <label>Last Name*</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
               />
-              {errors.lastName && <span className="error">{errors.lastName}</span>}
+              {errors.lastName && (
+                <span className="error">{errors.lastName}</span>
+              )}
             </div>
           </div>
         </div>
@@ -140,8 +150,8 @@ const CVSubmission = () => {
           <div className="form-column left">
             <div className="form-group">
               <label>City*</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="city"
                 value={formData.city}
                 onChange={handleChange}
@@ -150,8 +160,8 @@ const CVSubmission = () => {
             </div>
             <div className="form-group">
               <label>Street</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="street"
                 value={formData.street}
                 onChange={handleChange}
@@ -161,18 +171,20 @@ const CVSubmission = () => {
           <div className="form-column right">
             <div className="form-group">
               <label>Country*</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="country"
                 value={formData.country}
                 onChange={handleChange}
               />
-              {errors.country && <span className="error">{errors.country}</span>}
+              {errors.country && (
+                <span className="error">{errors.country}</span>
+              )}
             </div>
             <div className="form-group">
               <label>Province</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="province"
                 value={formData.province}
                 onChange={handleChange}
@@ -187,28 +199,32 @@ const CVSubmission = () => {
           <div className="form-column left">
             <div className="form-group">
               <label>Experience in Years*</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="experienceYears"
                 value={formData.experienceYears}
                 onChange={handleChange}
               />
-              {errors.experienceYears && <span className="error">{errors.experienceYears}</span>}
+              {errors.experienceYears && (
+                <span className="error">{errors.experienceYears}</span>
+              )}
             </div>
             <div className="form-group">
               <label>Highest Qualification*</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="highestQualification"
                 value={formData.highestQualification}
                 onChange={handleChange}
               />
-              {errors.highestQualification && <span className="error">{errors.highestQualification}</span>}
+              {errors.highestQualification && (
+                <span className="error">{errors.highestQualification}</span>
+              )}
             </div>
             <div className="form-group">
               <label>Held</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="held"
                 value={formData.held}
                 onChange={handleChange}
@@ -218,8 +234,8 @@ const CVSubmission = () => {
           <div className="form-column right">
             <div className="form-group">
               <label>Expected Salary</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="expectedSalary"
                 value={formData.expectedSalary}
                 onChange={handleChange}
@@ -234,8 +250,8 @@ const CVSubmission = () => {
           <div className="form-column left">
             <div className="form-group">
               <label>LinkedIn</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="linkedIn"
                 value={formData.linkedIn}
                 onChange={handleChange}
@@ -245,8 +261,8 @@ const CVSubmission = () => {
           <div className="form-column right">
             <div className="form-group">
               <label>Twitter</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="twitter"
                 value={formData.twitter}
                 onChange={handleChange}
@@ -254,8 +270,8 @@ const CVSubmission = () => {
             </div>
             <div className="form-group">
               <label>Skill set</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="skillSet"
                 value={formData.skillSet}
                 onChange={handleChange}
@@ -268,14 +284,18 @@ const CVSubmission = () => {
         <h1>Educational Details</h1>
         <div className="form-row">
           <div className="form-column left">
-            <button type="button" className="add-button">+ Add education</button>
+            <button type="button" className="add-button">
+              + Add education
+            </button>
           </div>
         </div>
 
         <h1>Experience Details</h1>
         <div className="form-row">
           <div className="form-column left">
-            <button type="button" className="add-button">+ Add experience</button>
+            <button type="button" className="add-button">
+              + Add experience
+            </button>
           </div>
         </div>
 
@@ -285,38 +305,26 @@ const CVSubmission = () => {
           <div className="form-column left">
             <div className="form-group">
               <label>Resume</label>
-              <input 
-                type="file" 
-                name="resume"
-                onChange={handleChange}
-              />
+              <input type="file" name="resume" onChange={handleChange} />
             </div>
             <div className="form-group">
               <label>offer</label>
-              <input 
-                type="file" 
-                name="offer"
-                onChange={handleChange}
-              />
+              <input type="file" name="offer" onChange={handleChange} />
             </div>
             <div className="form-group">
               <label>cv</label>
-              <input 
-                type="file" 
-                name="cv"
-                onChange={handleChange}
-              />
+              <input type="file" name="cv" onChange={handleChange} />
             </div>
           </div>
         </div>
 
         <div className="form-submit">
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="submit-button"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Submitting...' : 'Submit'}
+            {isSubmitting ? "Submitting..." : "Submit"}
           </button>
         </div>
       </form>
