@@ -1,5 +1,7 @@
+// src/Auth/SignUp.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 import './SignUp.css';
 
 const SignUp = () => {
@@ -8,20 +10,19 @@ const SignUp = () => {
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent the default form submission
+        e.preventDefault();
 
-        console.log('Form submitted'); // Debugging log
-
-        // Fetch API call to signup
         try {
             const response = await fetch('http://localhost:5000/api/auth/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, email, phone, password }), // Send correct fields
+                body: JSON.stringify({ username, email, phone, password }),
             });
 
             if (!response.ok) {
@@ -29,14 +30,11 @@ const SignUp = () => {
                 throw new Error(errorData.message || 'Network response was not ok');
             }
 
-            const data = await response.json();
-            console.log(data); // Log the response from the server
-
-            // Optionally handle success (e.g., redirect to login or show a success message)
+            login();
+            navigate('/submit-cv'); // Redirect to CV submission page after signup
 
         } catch (error) {
-            console.error('Error during signup:', error);
-            setErrorMessage(error.message); // Set the error message to display
+            setErrorMessage(error.message);
         }
     };
 
@@ -52,7 +50,6 @@ const SignUp = () => {
                     <input
                         type="text"
                         id="username"
-                        name="username"
                         required
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
@@ -62,7 +59,6 @@ const SignUp = () => {
                     <input
                         type="email"
                         id="email"
-                        name="email"
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -72,7 +68,6 @@ const SignUp = () => {
                     <input
                         type="tel"
                         id="phone"
-                        name="phone"
                         required
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
@@ -82,13 +77,12 @@ const SignUp = () => {
                     <input
                         type="password"
                         id="password"
-                        name="password"
                         required
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
 
-                    {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Display error message */}
+                    {errorMessage && <p className="error-message">{errorMessage}</p>}
 
                     <button type="submit">Register</button>
                 </form>

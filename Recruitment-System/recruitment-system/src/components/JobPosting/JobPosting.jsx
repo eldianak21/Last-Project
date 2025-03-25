@@ -35,8 +35,8 @@ const JobPosting = () => {
                 <div className="filters">
                     <input type="text" placeholder="What" className="filter-input" />
                     <input type="text" placeholder="Where" className="filter-input" />
-                    <button className="search-button">Search</button>
                 </div>
+                <button className="search-button">Search</button>
             </div>
 
             <div className="job-listings">
