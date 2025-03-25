@@ -12,6 +12,7 @@ import CVSubmission from './Auth/CVSubmission';
 import { AuthProvider } from './Auth/AuthContext';
 import Footer from './components/Footer/Footer';
 import ForgotPassword from './Auth/ForgotPassword';
+import UserDashboard from './components/Home/User/UserDashboard';
 
 const App = () => {
     return (
@@ -27,6 +28,7 @@ const App = () => {
                     <Route path="/job-posting" element={<JobPosting />} />
                     <Route path="/job-description/:id" element={<JobDescription />} />
                     <Route path="/submit-cv" element={<CVSubmission />} />
+                    <Route path="/user-dashboard" element={<UserDashboard />} />
                 </Routes>
                <Footer/>
             </Router>

@@ -116,8 +116,6 @@ footer a:hover {
         max-width: 100%; /* Allow full width in mobile view */
     }
 }
-
-.forgot-password {
-    text-align: center; /* Center align forgot password link */
-    margin-top: 20px; /* Add some space above */
+.forgot-password{
+    align-items: center;
 }

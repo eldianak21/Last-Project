@@ -13,7 +13,7 @@ const Header = () => {
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/about">About Us</Link></li>
                         <li><Link to="/job-posting">Job Posting</Link></li>
-                        <li><Link to="/contact-us">Contact</Link></li> {/* Link to the Contact page */}
+                        <li><Link to="/contact">Contact</Link></li> {/* Link to the Contact page */}
                     </ul>
                 </nav>
                 <div className="search-account">

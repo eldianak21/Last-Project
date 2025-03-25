@@ -1,73 +1,105 @@
-/* Form.css */
+/* CVSubmission.css */
 .form-container {
-    font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .form-container h1 {
-    font-size: 18px;
-    margin: 20px 0 10px 0;
-    color: #333;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
-  }
-  
-  .form-row {
-    display: flex;
-    margin-bottom: 20px;
-  }
-  
-  .form-column {
-    flex: 1;
-    padding: 0 10px;
-  }
-  
-  .form-column.left {
-    width: 50%;
-    padding-right: 15px;
-  }
-  
-  .form-column.right {
-    width: 50%;
-    padding-left: 15px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 14px;
-    color: #555;
-  }
-  
-  .form-group input[type="text"],
-  .form-group input[type="file"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  .add-button {
-    background: none;
-    border: 1px dashed #aaa;
-    color: #555;
-    padding: 8px 15px;
-    margin-bottom: 15px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 14px;
-    display: block;
-    width: 200px;
-    text-align: center;
-  }
-  
-  .add-button:hover {
-    background-color: #f5f5f5;
-  }
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-container h1 {
+  font-size: 18px;
+  margin: 20px 0 10px 0;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.form-row {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.form-column {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.form-column.left {
+  width: 50%;
+  padding-right: 15px;
+}
+
+.form-column.right {
+  width: 50%;
+  padding-left: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.add-button {
+  background: none;
+  border: 1px dashed #aaa;
+  color: #555;
+  padding: 8px 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  display: block;
+  width: 200px;
+  text-align: center;
+}
+
+.add-button:hover {
+  background-color: #f5f5f5;
+}
+
+.form-submit {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.submit-button {
+  background-color: #5a7bbd;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #4a6bac;
+}
+
+.submit-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+}
