@@ -22,11 +22,13 @@ import HRManagerDashboard from "./pages/HR/HRManagerDashboard";
 import ApplicationManagement from "./pages/HR/ApplicationManagement";
 import CandidateProfiles from "./pages/HR/CandidateProfiles";
 import JobPostings from "./pages/HR/JobPostings";
-import DepartmentHeadManagement from "./pages/HR/DepartmentHeadManagement";
 // src/App.jsx
+import DepartmentHeadManagement from "./pages/HR/DepartmentHeadManagement";
+import InterviewResults from "./pages/HR/InterviewResults";
 
 const App = () => {
   return (
+    <AuthProvider>
     <Router>
       <Header />
       <Routes>
@@ -55,9 +57,11 @@ const App = () => {
           path="/department-head-management"
           element={<DepartmentHeadManagement />}
         />
+        <Route path="/result" element={<InterviewResults/>}/>
       </Routes>
       <Footer />
     </Router>
+    </AuthProvider>
   );
 };
 
