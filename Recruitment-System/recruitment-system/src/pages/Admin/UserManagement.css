@@ -1,0 +1,82 @@
+/* UserManagement.css */
+.add-user-form {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+  }
+  
+  .add-user-form h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  }
+  
+  .role-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  
+  .role-admin {
+    background: rgba(52, 152, 219, 0.2);
+    color: #2980b9;
+  }
+  
+  .role-hr {
+    background: rgba(155, 89, 182, 0.2);
+    color: #8e44ad;
+  }
+  
+  .role-dept {
+    background: rgba(241, 196, 15, 0.2);
+    color: #f39c12;
+  }
+  
+  .last-active {
+    color: #7f8c8d;
+    font-size: 0.85rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .add-user-form {
+      padding: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 12px;
+    }
+  }
