@@ -23,6 +23,7 @@ import CandidateProfiles from "./pages/HR/CandidateProfiles";
 import JobPostings from "./pages/HR/JobPostings";
 import DepartmentHeadManagement from "./pages/HR/DepartmentHeadManagement";
 import { AuthProvider } from "./Auth/AuthContext";
+import DepartmentHeadDashboard from "./pages/DepartmentHead/DepartmentHeadDashboard";
 
 const App = () => {
   return (
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/application-overview" element={<ApplicationOverview />} />
           <Route path="/hr-dashboard" element={<HRManagerDashboard />} />
           <Route path="/job-postings" element={<JobPostings />} />
+          <Route path="/department-head" element={<DepartmentHeadDashboard />} />
           <Route
             path="/application-management"
             element={<ApplicationManagement />}
