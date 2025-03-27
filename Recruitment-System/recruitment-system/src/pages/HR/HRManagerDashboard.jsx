@@ -101,6 +101,28 @@ const HRManagerDashboard = () => {
         >
           Department Head Management
         </Link>
+        <Link
+          to="/result"
+          style={{
+            display: "block",
+            padding: "20px",
+            backgroundColor: "#5a7bbd", // Updated color
+            color: "white",
+            textAlign: "center",
+            textDecoration: "none",
+            borderRadius: "5px",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+            transition: "background-color 0.3s, transform 0.3s",
+          }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.backgroundColor = "#4a6a9b")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.backgroundColor = "#5a7bbd")
+          }
+        >
+          Result
+        </Link>
       </nav>
     </div>
   );

@@ -86,35 +86,19 @@ const InterviewResults = () => {
       <nav style={{ marginBottom: "20px" }}>
         <ul style={{ listStyleType: "none", padding: 0 }}>
           <li style={{ display: "inline", marginRight: "20px" }}>
-            <Link to="/hr/dashboard">Dashboard</Link>
+            <Link to="/hr-dashboard">Dashboard</Link>
+          </li>
+           <li style={{ display: "inline", marginRight: "20px" }}>
+            <Link to="/job-postings">Job Postings</Link>
           </li>
           <li style={{ display: "inline", marginRight: "20px" }}>
             <Link to="/application-management">Application Management</Link>
           </li>
-          <li style={{ display: "inline" }}>
+          <li style={{ display: "inline", marginRight: "20px" }}>
             <Link to="/candidate-profiles">Candidate Profiles</Link>
           </li>
           <li style={{ display: "inline" }}>
-            <Link
-              to="/department-head-management"
-              style={{
-                display: "block",
-                padding: "20px",
-                backgroundColor: "#5a7bbd",
-                color: "white",
-                textAlign: "center",
-                textDecoration: "none",
-                borderRadius: "5px",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-                transition: "background-color 0.3s, transform 0.3s",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.backgroundColor = "#4a6a9b")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.backgroundColor = "#5a7bbd")
-              }
-            >
+            <Link to="/department-head-management">
               Department Head Management
             </Link>
           </li>

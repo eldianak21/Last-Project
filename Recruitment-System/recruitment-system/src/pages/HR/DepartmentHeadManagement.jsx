@@ -86,19 +86,24 @@ const DepartmentHeadManagement = () => {
       <h2>Department Head Management</h2>
 
       {/* Navigation Bar */}
-      <nav style={{ marginBottom: "20px" }}>
+       <nav style={{ marginBottom: "20px" }}>
         <ul style={{ listStyleType: "none", padding: 0 }}>
           <li style={{ display: "inline", marginRight: "20px" }}>
-            <Link to="/hr/dashboard">Dashboard</Link>
+            <Link to="/hr-dashboard">Dashboard</Link>
           </li>
-          <li style={{ display: "inline", marginRight: "20px" }}>
-            <Link to="/application-management">Application Management</Link>
+           <li style={{ display: "inline", marginRight: "20px" }}>
+            <Link to="/job-postings">Job Postings</Link>
           </li>
           <li style={{ display: "inline", marginRight: "20px" }}>
             <Link to="/candidate-profiles">Candidate Profiles</Link>
           </li>
-          <li style={{ display: "inline" }}>
-            <Link to="/department-head-management">Department Head Management</Link>
+          <li style={{ display: "inline", marginRight: "20px" }}>
+            <Link to="/application-management">
+              Application Management
+            </Link>
+          </li>
+          <li style={{ display: "inline", marginRight: "20px" }}>
+            <Link to="/result">Result</Link>
           </li>
         </ul>
       </nav>
