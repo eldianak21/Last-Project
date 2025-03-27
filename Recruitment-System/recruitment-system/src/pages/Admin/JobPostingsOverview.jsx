@@ -1,101 +1,163 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./JobPostingsOverview.css";
 
 const JobPostingsOverview = () => {
   const [jobPostings, setJobPostings] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isAdmin, setIsAdmin] = useState(true); // Set to true for admin
+  const [statusFilter, setStatusFilter] = useState("All");
 
-  // Temporary data
   const fetchJobPostings = () => {
     const temporaryJobPostings = [
-      { id: 1, title: "Software Engineer", department: "IT", status: "Open" },
+      {
+        id: 1,
+        title: "Software Engineer",
+        department: "IT",
+        status: "Open",
+        applicants: 12,
+        posted: "2023-05-01",
+      },
       {
         id: 2,
         title: "Product Manager",
         department: "Product",
         status: "Closed",
+        applicants: 8,
+        posted: "2023-04-15",
       },
       {
         id: 3,
         title: "UX Designer",
         department: "Design",
         status: "Open",
+        applicants: 5,
+        posted: "2023-05-10",
       },
     ];
     setJobPostings(temporaryJobPostings);
   };
 
   useEffect(() => {
-    fetchJobPostings(); // Fetch temporary data on component mount
+    fetchJobPostings();
   }, []);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
-  // Filter job postings based on search query for title, department, and status
-  const filteredJobPostings = jobPostings.filter(
-    (job) =>
+  const handleStatusFilter = (e) => {
+    setStatusFilter(e.target.value);
+  };
+
+  const filteredJobPostings = jobPostings.filter((job) => {
+    const matchesSearch =
       job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      job.department.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      job.status.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+      job.department.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesStatus = statusFilter === "All" || job.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
+
+  const getStatusClass = (status) => {
+    return status === "Open" ? "status-open" : "status-closed";
+  };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Job Postings Overview</h2>
+    <div className="admin-container">
+      <div className="admin-sidebar">
+        <div className="sidebar-header">
+          <h2>Admin Panel</h2>
+        </div>
+        <nav className="sidebar-nav">
+          <Link to="/user-management" className="nav-link">
+            <i className="fas fa-users"></i>
+            <span>User Management</span>
+          </Link>
+          <Link to="/job-posting-overview" className="nav-link active">
+            <i className="fas fa-briefcase"></i>
+            <span>Job Postings</span>
+          </Link>
+          <Link to="/application-overview" className="nav-link">
+            <i className="fas fa-file-alt"></i>
+            <span>Applications</span>
+          </Link>
+        </nav>
+      </div>
 
-      {/* Search Input */}
-      <input
-        type="text"
-        placeholder="Search by job title, department, or status..."
-        value={searchQuery}
-        onChange={handleSearchChange}
-        style={{ marginBottom: "20px", padding: "8px", width: "300px" }}
-      />
+      <div className="admin-main">
+        <header className="admin-header">
+          <h1>Job Postings Overview</h1>
+          <div className="header-actions">
+            <button className="add-job-btn">
+              <i className="fas fa-plus"></i> New Job
+            </button>
+            <button className="notification-btn">
+              <i className="fas fa-bell"></i>
+              <span className="badge">3</span>
+            </button>
+          </div>
+        </header>
 
-      {/* Navigation Links */}
-      <nav style={{ marginBottom: "20px" }}>
-        <Link to="/admin-dashboard" style={{ marginRight: "15px" }}>
-          Admin Dashboard
-        </Link>
-        <Link to="/user-management" style={{ marginRight: "15px" }}>
-          User Management
-        </Link>
-        <Link to="/application-overview">Application Overview</Link>
-      </nav>
+        <div className="dashboard-content">
+          <div className="filters-container">
+            <div className="search-box">
+              <i className="fas fa-search"></i>
+              <input
+                type="text"
+                placeholder="Search job postings..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+              />
+            </div>
+            <div className="filter-dropdown">
+              <select value={statusFilter} onChange={handleStatusFilter}>
+                <option value="All">All Statuses</option>
+                <option value="Open">Open</option>
+                <option value="Closed">Closed</option>
+              </select>
+            </div>
+          </div>
 
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
-        <thead>
-          <tr>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>ID</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Title</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>
-              Department
-            </th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredJobPostings.map((job) => (
-            <tr key={job.id}>
-              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                {job.id}
-              </td>
-              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                {job.title}
-              </td>
-              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                {job.department}
-              </td>
-              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                {job.status}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          <div className="data-table-container">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Department</th>
+                  <th>Posted</th>
+                  <th>Applicants</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredJobPostings.map((job) => (
+                  <tr key={job.id}>
+                    <td>{job.id}</td>
+                    <td>{job.title}</td>
+                    <td>{job.department}</td>
+                    <td>{job.posted}</td>
+                    <td>{job.applicants}</td>
+                    <td>
+                      <span className={`status-badge ${getStatusClass(job.status)}`}>
+                        {job.status}
+                      </span>
+                    </td>
+                    <td>
+                      <button className="action-btn edit-btn">
+                        <i className="fas fa-edit"></i>
+                      </button>
+                      <button className="action-btn delete-btn">
+                        <i className="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

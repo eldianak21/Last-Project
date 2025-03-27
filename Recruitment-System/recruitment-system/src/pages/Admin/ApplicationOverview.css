@@ -1,0 +1,159 @@
+/* ApplicationOverview.css */
+.filters-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .search-box {
+    position: relative;
+    flex: 1;
+    min-width: 250px;
+    max-width: 400px;
+  }
+  
+  .search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #95a5a6;
+  }
+  
+  .search-box input {
+    width: 100%;
+    padding: 12px 20px 12px 45px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+  }
+  
+  .search-box input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  }
+  
+  .filter-dropdown {
+    min-width: 200px;
+  }
+  
+  .filter-dropdown select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .filter-dropdown select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  }
+  
+  .data-table-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+  }
+  
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .data-table th {
+    background: #3498db;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 500;
+  }
+  
+  .data-table td {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #34495e;
+  }
+  
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .data-table tr:hover {
+    background: #f8f9fa;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  
+  .status-pending {
+    background: rgba(241, 196, 15, 0.2);
+    color: #f39c12;
+  }
+  
+  .status-accepted {
+    background: rgba(46, 204, 113, 0.2);
+    color: #27ae60;
+  }
+  
+  .status-rejected {
+    background: rgba(231, 76, 60, 0.2);
+    color: #c0392b;
+  }
+  
+  .action-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-right: 5px;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .view-btn {
+    background: #3498db;
+    color: white;
+  }
+  
+  .view-btn:hover {
+    background: #2980b9;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .data-table-container {
+      overflow-x: auto;
+    }
+    
+    .data-table {
+      min-width: 700px;
+    }
+    
+    .filters-container {
+      flex-direction: column;
+    }
+    
+    .search-box {
+      max-width: 100%;
+    }
+  }

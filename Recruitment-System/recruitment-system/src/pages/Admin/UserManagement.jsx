@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./UserManagement.css";
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
-  const [newUser, setNewUser] = useState({ name: "", role: "HR Manager" });
+  const [newUser, setNewUser] = useState({ name: "", email: "", role: "HR Manager" });
   const [searchQuery, setSearchQuery] = useState("");
-  const [isAdmin, setIsAdmin] = useState(true); // Set to true for admin
+  const [roleFilter, setRoleFilter] = useState("All");
+  const [isAdmin] = useState(true);
 
-  // Temporary data
   const fetchUsers = () => {
     const temporaryUsers = [
-      { id: 1, name: "Admin User", role: "Admin" },
-      { id: 2, name: "John Doe", role: "HR Manager" },
-      { id: 3, name: "Jane Smith", role: "Department Head" },
+      { id: 1, name: "Admin User", email: "admin@example.com", role: "Admin", lastActive: "Today" },
+      { id: 2, name: "John Doe", email: "john@example.com", role: "HR Manager", lastActive: "2 days ago" },
+      { id: 3, name: "Jane Smith", email: "jane@example.com", role: "Department Head", lastActive: "1 week ago" },
     ];
     setUsers(temporaryUsers);
   };
 
   useEffect(() => {
-    fetchUsers(); // Fetch temporary data on component mount
+    fetchUsers();
   }, []);
 
   const handleInputChange = (e) => {
@@ -30,12 +31,20 @@ const UserManagement = () => {
     setSearchQuery(e.target.value);
   };
 
+  const handleRoleFilter = (e) => {
+    setRoleFilter(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (newUser.name.trim()) {
-      const newUserWithId = { id: users.length + 1, ...newUser };
+    if (newUser.name.trim() && newUser.email.trim()) {
+      const newUserWithId = { 
+        id: users.length + 1, 
+        ...newUser,
+        lastActive: "Today"
+      };
       setUsers([...users, newUserWithId]);
-      setNewUser({ name: "", role: "HR Manager" }); // Reset form
+      setNewUser({ name: "", email: "", role: "HR Manager" });
     }
   };
 
@@ -48,99 +57,169 @@ const UserManagement = () => {
     }
   };
 
-  // Filter users based on search query for name and role
-  const filteredUsers = users.filter(
-    (user) =>
+  const filteredUsers = users.filter((user) => {
+    const matchesSearch =
       user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.role.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+      user.email.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesRole = roleFilter === "All" || user.role === roleFilter;
+    return matchesSearch && matchesRole;
+  });
+
+  const getRoleClass = (role) => {
+    switch (role) {
+      case "Admin":
+        return "role-admin";
+      case "HR Manager":
+        return "role-hr";
+      case "Department Head":
+        return "role-dept";
+      default:
+        return "";
+    }
+  };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>User Management</h2>
+    <div className="admin-container">
+      <div className="admin-sidebar">
+        <div className="sidebar-header">
+          <h2>Admin Panel</h2>
+        </div>
+        <nav className="sidebar-nav">
+          <Link to="/user-management" className="nav-link active">
+            <i className="fas fa-users"></i>
+            <span>User Management</span>
+          </Link>
+          <Link to="/job-posting-overview" className="nav-link">
+            <i className="fas fa-briefcase"></i>
+            <span>Job Postings</span>
+          </Link>
+          <Link to="/application-overview" className="nav-link">
+            <i className="fas fa-file-alt"></i>
+            <span>Applications</span>
+          </Link>
+        </nav>
+      </div>
 
-      {/* Search Input */}
-      <input
-        type="text"
-        placeholder="Search by name or role..."
-        value={searchQuery}
-        onChange={handleSearchChange}
-        style={{ marginBottom: "20px", padding: "8px", width: "300px" }}
-      />
+      <div className="admin-main">
+        <header className="admin-header">
+          <h1>User Management</h1>
+          <div className="header-actions">
+            <button className="notification-btn">
+              <i className="fas fa-bell"></i>
+              <span className="badge">3</span>
+            </button>
+            <button className="logout-btn">
+              <i className="fas fa-sign-out-alt"></i> Logout
+            </button>
+          </div>
+        </header>
 
-      {/* Navigation Links */}
-      <nav style={{ marginBottom: "20px" }}>
-        <Link to="/admin-dashboard" style={{ marginRight: "15px" }}>
-          Admin Dashboard
-        </Link>
-        <Link to="/job-posting-overview" style={{ marginRight: "15px" }}>
-          Job Postings Overview
-        </Link>
-        <Link to="/application-overview">Application Overview</Link>
-      </nav>
+        <div className="dashboard-content">
+          <div className="filters-container">
+            <div className="search-box">
+              <i className="fas fa-search"></i>
+              <input
+                type="text"
+                placeholder="Search users..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+              />
+            </div>
+            <div className="filter-dropdown">
+              <select value={roleFilter} onChange={handleRoleFilter}>
+                <option value="All">All Roles</option>
+                <option value="Admin">Admin</option>
+                <option value="HR Manager">HR Manager</option>
+                <option value="Department Head">Department Head</option>
+              </select>
+            </div>
+          </div>
 
-      {/* Admin can add HR users */}
-      {isAdmin && (
-        <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
-          <input
-            type="text"
-            name="name"
-            value={newUser.name}
-            onChange={handleInputChange}
-            placeholder="Enter HR user name"
-            required
-            style={{ marginRight: "10px" }}
-          />
-          <select
-            name="role"
-            value={newUser.role}
-            onChange={handleInputChange}
-            style={{ marginRight: "10px" }}
-            disabled // Admin can only add HR
-          >
-            <option value="HR Manager">HR Manager</option>
-          </select>
-          <button type="submit">Add HR User</button>
-        </form>
-      )}
-
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
-        <thead>
-          <tr>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>ID</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Name</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Role</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredUsers.map((user) => (
-            <tr key={user.id}>
-              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                {user.id}
-              </td>
-              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                {user.name}
-              </td>
-              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                {user.role}
-              </td>
-              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                {isAdmin && user.role === "HR Manager" && (
-                  <button
-                    onClick={() => handleRemoveUser(user.id)}
-                    style={{ color: "red" }}
+          {isAdmin && (
+            <div className="add-user-form">
+              <h3>Add New HR User</h3>
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="name"
+                    value={newUser.name}
+                    onChange={handleInputChange}
+                    placeholder="Full Name"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="email"
+                    name="email"
+                    value={newUser.email}
+                    onChange={handleInputChange}
+                    placeholder="Email"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <select
+                    name="role"
+                    value={newUser.role}
+                    onChange={handleInputChange}
+                    disabled
                   >
-                    Remove
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                    <option value="HR Manager">HR Manager</option>
+                  </select>
+                </div>
+                <button type="submit" className="primary-btn">
+                  <i className="fas fa-user-plus"></i> Add User
+                </button>
+              </form>
+            </div>
+          )}
+
+          <div className="data-table-container">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Last Active</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredUsers.map((user) => (
+                  <tr key={user.id}>
+                    <td>{user.id}</td>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>
+                      <span className={`role-badge ${getRoleClass(user.role)}`}>
+                        {user.role}
+                      </span>
+                    </td>
+                    <td>{user.lastActive}</td>
+                    <td>
+                      <button className="action-btn edit-btn">
+                        <i className="fas fa-edit"></i>
+                      </button>
+                      {isAdmin && user.role === "HR Manager" && (
+                        <button
+                          className="action-btn delete-btn"
+                          onClick={() => handleRemoveUser(user.id)}
+                        >
+                          <i className="fas fa-trash"></i>
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
