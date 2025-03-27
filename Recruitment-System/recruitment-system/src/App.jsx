@@ -22,6 +22,7 @@ import ApplicationManagement from "./pages/HR/ApplicationManagement";
 import CandidateProfiles from "./pages/HR/CandidateProfiles";
 import JobPostings from "./pages/HR/JobPostings";
 import DepartmentHeadManagement from "./pages/HR/DepartmentHeadManagement";
+import InterviewResults from "./pages/HR/InterviewResults";
 import { AuthProvider } from "./Auth/AuthContext";
 import DepartmentHeadDashboard from "./pages/DepartmentHead/DepartmentHeadDashboard";
 
@@ -57,6 +58,7 @@ const App = () => {
             path="/department-head-management"
             element={<DepartmentHeadManagement />}
           />
+          <Route path="/result" element={<InterviewResults />} />
         </Routes>
         <Footer />
       </Router>
