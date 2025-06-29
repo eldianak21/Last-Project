@@ -1,269 +1,261 @@
-// // server.js (Adjusted to include signup routes)
+// // const express = require("express");
+// // const bodyParser = require("body-parser");
+// // const cors = require("cors");
+// // const dotenv = require("dotenv");
+// // const db = require("./config/db"); // Your database connection
+// // const multer = require("multer");
+// // const authRoutes = require("./routes/authRoutes"); // Import auth routes
+// // const adminRoutes = require("./routes/admin"); // Import admin routes
+// // const applicationRoutes = require("./routes/applicationRoutes"); // Import application routes
+// // const applicationDataRoutes = require("./routes/applicationDataRoutes"); // Import applications routes
+// // const jobRoutes = require("./routes/jobRoutes"); // New route
+// // const userRoutes = require("./routes/userRoutes");
+// // const hrRoutes = require("./routes/hrRoutes"); // Import hr
+// // const jobPostingRoutes = require("./routes/jobPostingRoutes"); // Import hr
+// // const emailRoutes = require("./routes/emailRoutes"); // Import email routes
+// // const viewRoutes = require("./routes/viewRoutes"); // Import view routes
+// // const interviewRoutes = require("./routes/viewRoutes"); // Import view routes
+// // const interviewScheduleRoutes = require("./routes/interviewScheduleRoutes"); // Import interview routes
+// // const evaluationRoutes = require("./routes/evaluationRoutes"); // Import evaluation routes
+// // const newRoutes = require("./routes/newRoutes"); // Import new routes
+// // const finalRoutes = require("./routes/finalRoutes"); // Import final routes
+// // const passedRoutes = require("./routes/passedRoutes"); // Import passed routes
+// // // const candidateRoutes = require("./routes/candidateRoutes"); // Import candidate routes
+// // dotenv.config();
+// // dotenv.config();
+// // const app = express();
 
-// const express = require('express');
-// const bodyParser = require('body-parser');
-// const cors = require('cors');
-// const dotenv = require('dotenv');
-// const db = require('./config/db'); // Database connection
-// const multer = require('multer');
-// const { parseResume } = require('./utils/parseResume'); // Import resume parsing utility
-// const authRoutes = require('./routes/authRoutes');
-// const adminRoutes = require('./routes/admin'); // Import admin routes
+// // app.set("view engine", null); // Disable view engine (if not needed)
+// // // Enable CORS for all requests
+// // app.use(cors());
 
-// dotenv.config();
-// const app = express();
+// // // Middleware to parse JSON bodies
+// // app.use(bodyParser.json());
 
-// // Enable CORS for all requests
-// app.use(cors());
+// // // Set up multer for file uploads
+// // const upload = multer({ dest: "uploads/" }); // Directory for uploads
 
-// // Middleware to parse JSON bodies
-// app.use(bodyParser.json());
+// // // Serve static files from the uploads directory
+// // app.use("/uploads", express.static("uploads"));
 
-// // Set up multer for file uploads
-// const upload = multer({ dest: 'uploads/' }); // Directory for uploads
+// // // Use the email routes
+// // app.use("/api/send", emailRoutes);
 
-// // Mount the authentication routes
-// app.use('/api/auth', authRoutes); // Correctly mount the auth routes
+// // // Mount the authentication routes
+// // app.use("/api/auth", authRoutes); // Mount the auth routes
 
-// // Mount the admin routes
-// app.use('/api/admin', adminRoutes); // Mount admin routes at /api/admin
+// // // Mount the admin routes
+// // app.use("/api/admin", adminRoutes); // Mount admin routes
 
-// // Endpoint to submit a job application
-// app.post('/api/applications/:jobId', upload.fields([{ name: 'resume' }]), async (req, res) => {
-//     const { userId } = req.body;
-//     const jobId = req.params.jobId;
+// // // Mount hr routes
+// // app.use("/api/hr", hrRoutes);
 
-//     // Check for required files
-//     if (!req.files || !req.files.resume) {
-//         return res.status(400).json({ message: 'Resume file is required.' });
-//     }
+// // // Mount application routes
+// // app.use("/api/applications", applicationRoutes); // Mount application routes
 
-//     try {
-//         // Parse resume
-//         const resumeData = await parseResume(req.files.resume[0].path);
+// // // Mount application data routes with the new route name
+// // app.use("/api/application-data", applicationDataRoutes); // Mount application data routess
 
-//         // Fetch job criteria from the database
-//         const jobQuery = 'SELECT MinExperienceYears, RequiredQualifications, RequiredSkills FROM JobPostings WHERE JobID = ?';
-//         const [job] = await db.query(jobQuery, [jobId]);
+// // app.use("/api/view", viewRoutes);
 
-//         if (!job) {
-//             return res.status(404).json({ message: 'Job not found.' });
-//         }
+// // app.use("/api/interviews", interviewRoutes); // Mount the routes
+// // // Mount user routes
+// // app.use("/api", userRoutes); // Mount the user routes
 
-//         // Build candidate object using resume data
-//         const candidate = {
-//             userId,
-//             jobId,
-//             experienceYears: resumeData.personalInfo.experienceYears,
-//             highestQualification: resumeData.personalInfo.highestQualification,
-//             skills: resumeData.skills, // Only using skills from the resume
-//         };
+// // // app.use("/api/jobs", jobRoutes);
 
-//         console.log('Candidate Data:', candidate); // Log candidate data
+// // // Use job routes
+// // app.use("/api/job-postings", jobRoutes); // Use new job routes
 
-//         // Define selection criteria based on job
-//         const selectionCriteria = {
-//             minExperienceYears: job.MinExperienceYears || 1, // Default to 1 if not specified
-//             requiredQualifications: job.RequiredQualifications ? job.RequiredQualifications.split(',') : [],
-//             requiredSkills: job.RequiredSkills ? job.RequiredSkills.split(',') : [],
-//         };
+// // // Use job posting routes
+// // app.use("/api/job-postings", jobPostingRoutes);
 
-//         // Check if candidate meets selection criteria
-//         const meetsCriteria = (candidate) => {
-//             const { experienceYears, highestQualification, skills } = candidate;
-//             const hasRequiredExperience = experienceYears >= selectionCriteria.minExperienceYears;
-//             const hasRequiredQualification = selectionCriteria.requiredQualifications.includes(highestQualification);
-//             const hasRequiredSkills = selectionCriteria.requiredSkills.every(skill => skills.includes(skill));
+// // app.use("/api/interview-schedule", interviewScheduleRoutes); // Mount the interview routes
 
-//             console.log('Experience Check:', hasRequiredExperience);
-//             console.log('Qualification Check:', hasRequiredQualification);
-//             console.log('Skills Check:', hasRequiredSkills);
+// // // Use evaluation routes
+// // app.use("/api/evaluations", evaluationRoutes);
 
-//             return hasRequiredExperience || hasRequiredQualification || hasRequiredSkills; // Allow any match
-//         };
+// // app.use("/api/applicants", newRoutes);
 
-//         if (!meetsCriteria(candidate)) {
-//             return res.status(400).json({ message: 'Candidate does not meet the selection criteria.' });
-//         }
+// // app.use("/api/final", finalRoutes);
 
-//         // Insert application into the database
-//         const query = 'INSERT INTO Applications (UserID, JobID, Resume) VALUES (?, ?, ?)';
-//         await db.query(query, [userId, jobId, req.files.resume[0].path]);
+// // app.use("/api/passed", passedRoutes);
 
-//         // Prepare interview schedule (example: 7 days from now)
-//         const interviewSchedule = {
-//             candidateId: userId,
-//             interviewDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-//         };
+// // app.use("/api/interviewer", interviewerRoutes);
 
-//         // Respond with success message
-//         res.status(200).json({ message: 'Application submitted successfully', interviewSchedule });
-//     } catch (error) {
-//         console.error('Error processing application:', error);
-//         res.status(500).json({ message: 'Error submitting application: ' + error.message });
-//     }
-// });
+// // // app.use("/api/candidates", candidateRoutes);
 
-// // Define a simple route for testing
-// app.get('/', (req, res) => {
-//     res.send('API is running...');
-// });
+// // // Test endpoint
+// // app.get("/", (req, res) => {
+// //   res.send("API is running...");
+// // });
 
-// // Start the server
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => {
-//     console.log(`Server is running on port ${PORT}`);
-// });
+// // // Start the server
+// // const PORT = process.env.PORT || 5000;
+// // app.listen(PORT, () => {
+// //   console.log(`Server is running on port ${PORT}`);
+// // });
 
-// const express = require('express');
-// const bodyParser = require('body-parser');
-// const cors = require('cors');
-// const dotenv = require('dotenv');
-// const db = require('./config/db'); // Database connection
-// const multer = require('multer');
-// const { parseResume } = require('./utils/parseResume'); // Import resume parsing utility
-// const authRoutes = require('./routes/authRoutes'); // Import auth routes
-// const adminRoutes = require('./routes/admin'); // Import admin routes
+// const express = require("express");
+// const bodyParser = require("body-parser");
+// const cors = require("cors");
+// const dotenv = require("dotenv");
+// const db = require("./config/db");
+// const multer = require("multer");
+
+// // Import routes
+// const authRoutes = require("./routes/authRoutes");
+// const adminRoutes = require("./routes/admin");
+// const applicationRoutes = require("./routes/applicationRoutes");
+// const applicationDataRoutes = require("./routes/applicationDataRoutes");
+// const jobRoutes = require("./routes/jobRoutes");
+// const userRoutes = require("./routes/userRoutes");
+// const hrRoutes = require("./routes/hrRoutes");
+// const jobPostingRoutes = require("./routes/jobPostingRoutes");
+// const emailRoutes = require("./routes/emailRoutes");
+// const viewRoutes = require("./routes/viewRoutes");
+// const interviewRoutes = require("./routes/viewRoutes");
+// const interviewScheduleRoutes = require("./routes/interviewScheduleRoutes");
+// const evaluationRoutes = require("./routes/evaluationRoutes");
+// const newRoutes = require("./routes/newRoutes");
+// const finalRoutes = require("./routes/finalRoutes");
+// const passedRoutes = require("./routes/passedRoutes");
+// const interviewerRoutes = require("./routes/interviewerRoutes");
 
 // dotenv.config();
 // const app = express();
 
-// // Enable CORS for all requests
-// app.use(cors());
+// // Enhanced CORS configuration
+// app.use(
+//   cors({
+//     origin: process.env.FRONTEND_URL || "http://localhost:5173",
+//     credentials: true,
+//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   })
+// );
+// app.options("*", cors());
 
-// // Middleware to parse JSON bodies
+// // Middleware
 // app.use(bodyParser.json());
+// const upload = multer({ dest: "uploads/" });
+// app.use("/uploads", express.static("uploads"));
 
-// // Set up multer for file uploads
-// const upload = multer({ dest: 'uploads/' }); // Directory for uploads
+// // Routes
+// app.use("/api/send", emailRoutes);
+// app.use("/api/auth", authRoutes);
+// app.use("/api/admin", adminRoutes);
+// app.use("/api/hr", hrRoutes);
+// app.use("/api/applications", applicationRoutes);
+// app.use("/api/application-data", applicationDataRoutes);
+// app.use("/api/view", viewRoutes);
+// app.use("/api/interviews", interviewRoutes);
+// app.use("/api", userRoutes);
+// app.use("/api/job-postings", jobRoutes);
+// app.use("/api/job-postings", jobPostingRoutes);
+// app.use("/api/interview-schedule", interviewScheduleRoutes);
+// app.use("/api/evaluations", evaluationRoutes);
+// app.use("/api/applicants", newRoutes);
+// app.use("/api/final", finalRoutes);
+// app.use("/api/passed", passedRoutes);
+// app.use("/api/interviewer", interviewerRoutes);
 
-// // Mount the authentication routes
-// app.use('/api/auth', authRoutes); // Correctly mount the auth routes
-
-// // Mount the admin routes
-// app.use('/api/admin', adminRoutes); // Mount admin routes at /api/admin
-
-// // Endpoint to submit a job application
-// app.post('/api/applications/:jobId', upload.fields([{ name: 'resume' }]), async (req, res) => {
-//     const { userId } = req.body;
-//     const jobId = req.params.jobId;
-
-//     // Check for required files
-//     if (!req.files || !req.files.resume) {
-//         return res.status(400).json({ message: 'Resume file is required.' });
-//     }
-
-//     try {
-//         // Parse resume
-//         const resumeData = await parseResume(req.files.resume[0].path);
-
-//         // Fetch job criteria from the database
-//         const jobQuery = 'SELECT MinExperienceYears, RequiredQualifications, RequiredSkills FROM JobPostings WHERE JobID = ?';
-//         const [job] = await db.query(jobQuery, [jobId]);
-
-//         if (!job) {
-//             return res.status(404).json({ message: 'Job not found.' });
-//         }
-
-//         // Build candidate object using resume data
-//         const candidate = {
-//             userId,
-//             jobId,
-//             experienceYears: resumeData.personalInfo.experienceYears,
-//             highestQualification: resumeData.personalInfo.highestQualification,
-//             skills: resumeData.skills, // Only using skills from the resume
-//         };
-
-//         console.log('Candidate Data:', candidate); // Log candidate data
-
-//         // Define selection criteria based on job
-//         const selectionCriteria = {
-//             minExperienceYears: job.MinExperienceYears || 1, // Default to 1 if not specified
-//             requiredQualifications: job.RequiredQualifications ? job.RequiredQualifications.split(',') : [],
-//             requiredSkills: job.RequiredSkills ? job.RequiredSkills.split(',') : [],
-//         };
-
-//         // Check if candidate meets selection criteria
-//         const meetsCriteria = (candidate) => {
-//             const { experienceYears, highestQualification, skills } = candidate;
-//             const hasRequiredExperience = experienceYears >= selectionCriteria.minExperienceYears;
-//             const hasRequiredQualification = selectionCriteria.requiredQualifications.includes(highestQualification);
-//             const hasRequiredSkills = selectionCriteria.requiredSkills.every(skill => skills.includes(skill));
-
-//             console.log('Experience Check:', hasRequiredExperience);
-//             console.log('Qualification Check:', hasRequiredQualification);
-//             console.log('Skills Check:', hasRequiredSkills);
-
-//             return hasRequiredExperience || hasRequiredQualification || hasRequiredSkills; // Allow any match
-//         };
-
-//         if (!meetsCriteria(candidate)) {
-//             return res.status(400).json({ message: 'Candidate does not meet the selection criteria.' });
-//         }
-
-//         // Insert application into the database
-//         const query = 'INSERT INTO Applications (UserID, JobID, Resume) VALUES (?, ?, ?)';
-//         await db.query(query, [userId, jobId, req.files.resume[0].path]);
-
-//         // Prepare interview schedule (example: 7 days from now)
-//         const interviewSchedule = {
-//             candidateId: userId,
-//             interviewDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-//         };
-
-//         // Respond with success message
-//         res.status(200).json({ message: 'Application submitted successfully', interviewSchedule });
-//     } catch (error) {
-//         console.error('Error processing application:', error);
-//         res.status(500).json({ message: 'Error submitting application: ' + error.message });
-//     }
+// // Test endpoint
+// app.get("/", (req, res) => {
+//   res.send("API is running...");
 // });
 
-// // Define a simple route for testing
-// app.get('/', (req, res) => {
-//     res.send('API is running...');
-// });
-
-// // Start the server
+// // Start server
 // const PORT = process.env.PORT || 5000;
 // app.listen(PORT, () => {
-//     console.log(`Server is running on port ${PORT}`);
+//   console.log(`Server is running on port ${PORT}`);
 // });
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const db = require('./config/db'); // Your database connection
-const multer = require('multer');
-const authRoutes = require('./routes/authRoutes'); // Import auth routes
-const adminRoutes = require('./routes/admin'); // Import admin routes
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const db = require("./config/db");
+const multer = require("multer");
 
+// Import routes
+const authRoutes = require("./routes/authRoutes");
+const adminRoutes = require("./routes/admin");
+const applicationRoutes = require("./routes/applicationRoutes");
+const applicationDataRoutes = require("./routes/applicationDataRoutes");
+const jobRoutes = require("./routes/jobRoutes");
+const userRoutes = require("./routes/userRoutes");
+const hrRoutes = require("./routes/hrRoutes");
+const jobPostingRoutes = require("./routes/jobPostingRoutes");
+const emailRoutes = require("./routes/emailRoutes");
+const viewRoutes = require("./routes/viewRoutes");
+const interviewRoutes = require("./routes/viewRoutes");
+const interviewScheduleRoutes = require("./routes/interviewScheduleRoutes");
+const evaluationRoutes = require("./routes/evaluationRoutes");
+const newRoutes = require("./routes/newRoutes");
+const finalRoutes = require("./routes/finalRoutes");
+const passedRoutes = require("./routes/passedRoutes");
+const interviewerRoutes = require("./routes/interviewerRoutes");
+const emailRoute = require("./routes/emailRoutes"); // Import email route
 dotenv.config();
 const app = express();
 
-// Enable CORS for all requests
-app.use(cors());
+// Enhanced CORS configuration
+const corsOptions = {
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      "http://localhost:5173", // Vite frontend
+      "http://localhost:3000", // React frontend
+    ];
 
-// Middleware to parse JSON bodies
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Handle preflight requests
+
+// Middleware
 app.use(bodyParser.json());
+const upload = multer({ dest: "uploads/" });
+app.use("/uploads", express.static("uploads"));
 
-// Set up multer for file uploads
-const upload = multer({ dest: 'uploads/' }); // Directory for uploads
+// Routes
+app.use("/api/email", emailRoutes);
+app.use("/api/emails", emailRoute);
 
-// Mount the authentication routes
-app.use('/api/auth', authRoutes); // Correctly mount the auth routes
-
-// Mount the admin routes
-app.use('/api/admin', adminRoutes); // Mount admin routes at /api/admin
+app.use("/api/auth", authRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/hr", hrRoutes);
+app.use("/api/applications", applicationRoutes);
+app.use("/api/application-data", applicationDataRoutes);
+app.use("/api/view", viewRoutes);
+app.use("/api/interviews", interviewRoutes);
+app.use("/api", userRoutes);
+app.use("/api/jobs", jobRoutes);
+app.use("/api/job-postings", jobRoutes);
+app.use("/api/job-postings", jobPostingRoutes);
+app.use("/api/interview-schedule", interviewScheduleRoutes);
+app.use("/api/evaluations", evaluationRoutes);
+app.use("/api/applicants", newRoutes);
+app.use("/api/final", finalRoutes);
+app.use("/api/passed", passedRoutes);
+app.use("/api/interviewer", interviewerRoutes);
 
 // Test endpoint
-app.get('/', (req, res) => {
-    res.send('API is running...');
+app.get("/", (req, res) => {
+  res.send("API is running...");
 });
 
-// Start the server
+// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

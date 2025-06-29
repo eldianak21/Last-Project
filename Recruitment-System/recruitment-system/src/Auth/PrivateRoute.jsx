@@ -1,24 +1,19 @@
-// // src/Auth/PrivateRoute.js
+import React, { useContext } from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
 
-// import React from 'react';
-// import { Navigate, Outlet } from 'react-router-dom';
+const PrivateRoute = () => {
+  const { isAuthenticated, isLoading } = useContext(AuthContext);
 
-// const PrivateRoute = ({ children }) => {
-//     const token = localStorage.getItem('token'); // Check if the user is authenticated
+  if (isLoading) {
+    return <div>Loading...</div>; // Or a spinner, or null
+  }
 
-//     return token ? <Outlet /> : <Navigate to="/login" />; // Redirect if not authenticated
-// };
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
 
-// export default PrivateRoute;
-
-// src/Auth/PrivateRoute.jsx
-import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-
-const PrivateRoute = ({ children }) => {
-    const token = localStorage.getItem('token');
-
-    return token ? <Outlet /> : <Navigate to="/login" />;
+  return <Outlet />;
 };
 
 export default PrivateRoute;

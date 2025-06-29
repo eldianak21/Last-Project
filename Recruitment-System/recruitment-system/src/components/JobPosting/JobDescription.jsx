@@ -1,82 +1,108 @@
-// JobDescription.jsx
-import React from 'react';
-import { useParams, Link } from 'react-router-dom'; // Import Link for navigation
-import './JobDescription.css';
+import React, { useEffect, useState, useContext } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom"; // Import Link and useNavigate for navigation
+import { useAuth } from "../../Auth/AuthContext"; // Import your Auth context
+import "./JobDescription.css";
 
 const JobDescription = () => {
-    const { id } = useParams();
+  const { id } = useParams();
+  const { isAuthenticated } = useAuth(); // Get isAuthenticated from AuthContext
+  const navigate = useNavigate(); // Hook for navigation
+  const [job, setJob] = useState(null); // State to store job details
+  const [error, setError] = useState(null); // State to track errors
 
-    const jobDescriptions = {
-        1: {
-            title: 'Product Marketer',
-            description: 'Responsible for developing and executing marketing strategies to promote products.',
-            postedDate: '2/24/2024',
-            employmentType: 'Full-Time',
-            remote: 'No',
-        },
-        2: {
-            title: 'Product Marketing Intern',
-            description: 'Assist in marketing efforts and support the marketing team in daily tasks.',
-            postedDate: '2/24/2024',
-            employmentType: 'Internship',
-            remote: 'Yes',
-        },
-        3: {
-            title: 'Web Developer',
-            description: 'Develop and maintain responsive web applications. Write clean, efficient code using modern JavaScript frameworks. Collaborate with designers and product managers to implement user interfaces and features. Troubleshoot and debug issues, ensuring optimal performance and security. Stay updated with emerging web technologies.',
-            postedDate: '1/24/2025',
-            employmentType: 'Part-Time',
-            remote: 'Yes',
-        },
+  // Fetch job description from the backend
+  useEffect(() => {
+    const fetchJobDescription = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/job-postings/${id}`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setJob(data);
+      } catch (error) {
+        console.error("Error fetching job description:", error);
+        setError(error.message);
+      }
     };
 
-    const job = jobDescriptions[id] || {};
+    fetchJobDescription();
+  }, [id]);
 
-    return (
-        <div className="job-description-container">
-            <header className="job-header">
-                <h2>JIMMA UNIVERSITY | {job.employmentType}</h2> {/* Dynamic Employment Type */}
-                <h1>{job.title}</h1>
+  if (error) {
+    return <div className="error-message">Error: {error}</div>; // Display error message
+  }
 
-                <div className="job-buttons">
-                    <Link to="/sign-up"> {/* Link to Signup/Login page */}
-                        <button className="apply-button">I'm interested</button>
-                    </Link>
-                    <button className="share-button">Share job via email</button>
-                </div>
-            </header>
+  if (!job) {
+    return <div>Loading...</div>; // Display loading state while fetching
+  }
 
-            <div className="social-media-icons">
-                <i className="fab fa-facebook-square"></i>
-                <i className="fab fa-linkedin"></i>
-                <i className="fab fa-whatsapp"></i>
-                <i className="fab fa-telegram-plane"></i>
-                <i className="fas fa-share-alt"></i>
-            </div>
-            <p className="job-listing">job posting &gt; job detail</p>
+  // const handleApplyClick = () => {
+  //   if (isAuthenticated) {
+  //     navigate(`/submit-cv/${id}`); // Direct to CV submission with job ID if logged in
+  //   } else {
+  //     navigate("/sign-up"); // Direct to sign up if not logged in
+  //   }
+  // };
 
-            <table className="job-details-table">
-                <tbody>
-                    <tr>
-                        <td className="job-description">
-                            <h3>Job Description</h3>
-                            <p>{job.description}</p>
-                        </td>
-                        <td className="job-info">
-                            <h3>Job Details</h3>
-                            <p><strong>Posted Date:</strong> {job.postedDate}</p>
-                            <p><strong>Employment Type:</strong> {job.employmentType}</p>
-                            <p><strong>Remote:</strong> {job.remote}</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+  const handleApplyClick = () => {
+    if (isAuthenticated) {
+      navigate(`/submit-cv/${id}`); // Direct to CV submission if logged in
+    } else {
+      localStorage.setItem("pendingJobId", id); // Store jobId before redirecting
+      navigate("/sign-up"); // Direct to sign up/login if not logged in
+    }
+  };
 
-            <Link to="/sign-up"> {/* Link to Signup/Login page */}
-                <button className="apply-button">I'm interested</button>
-            </Link>
+  return (
+    <div className="job-description-container">
+      <header className="job-header">
+        <h2>JIMMA UNIVERSITY | {job.EmploymentType || "Not Specified"}</h2>
+        <h1>{job.Title}</h1>
+
+        <div className="job-buttons">
+          <button className="apply-button" onClick={handleApplyClick}>
+            {isAuthenticated ? "Apply Now" : "Sign Up to Apply"}
+          </button>
+          <button className="share-button">Share job via email</button>
         </div>
-    );
+      </header>
+
+      <div className="social-media-icons">
+        <i className="fab fa-facebook-square"></i>
+        <i className="fab fa-linkedin"></i>
+        <i className="fab fa-whatsapp"></i>
+        <i className="fab fa-telegram-plane"></i>
+        <i className="fas fa-share-alt"></i>
+      </div>
+
+      <p className="job-listing">job posting &gt; job detail</p>
+
+      <table className="job-details-table">
+        <tbody>
+          <tr>
+            <td className="job-description">
+              <h3>Job Description</h3>
+              <p>{job.Description}</p>
+            </td>
+            <td className="job-info">
+              <h3>Job Details</h3>
+              <p>
+                <strong>Posted Date:</strong>{" "}
+                {new Date(job.CreatedAt).toLocaleDateString()}
+              </p>
+              <p>
+                <strong>Employment Type:</strong>{" "}
+                {job.EmploymentType || "Not Specified"}
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default JobDescription;
