@@ -1,0 +1,382 @@
+.interview-scheduling-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.interview-scheduling-sidebar {
+  width: 250px;
+  background-color: #1e293b;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  color: white;
+}
+
+.interview-scheduling-sidebar-header h2 {
+  color: #ffffff;
+  margin-bottom: 30px;
+  font-size: 1.3rem;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 15px;
+}
+
+.interview-scheduling-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.interview-scheduling-nav-link {
+  color: #94a3b8;
+  text-decoration: none;
+  padding: 12px 15px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.interview-scheduling-nav-link:hover {
+  background-color: #334155;
+  color: #e2e8f0;
+}
+
+.interview-scheduling-main-content {
+  flex: 1;
+  padding: 30px 40px;
+  background-color: #ffffff;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.interview-scheduling-header {
+  margin-bottom: 30px;
+}
+
+.interview-scheduling-header h1 {
+  color: #1e293b;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.interview-scheduling-header p {
+  color: #64748b;
+  font-size: 1rem;
+}
+
+.filter-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  position: relative;
+  flex: 1;
+  min-width: 250px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px 15px 10px 35px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+}
+
+.filter-dropdowns {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-dropdowns select {
+  padding: 10px 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background-color: white;
+  cursor: pointer;
+  min-width: 180px;
+}
+
+.applications-table-container {
+  overflow-x: auto;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.applications-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  font-size: 0.9rem;
+}
+
+.applications-table th,
+.applications-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.applications-table th {
+  background-color: #f1f5f9;
+  font-weight: 600;
+  color: #334155;
+  position: sticky;
+  top: 0;
+}
+
+.applications-table tr:hover {
+  background-color: #f8fafc;
+}
+
+.applications-table input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #3b82f6;
+  cursor: pointer;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.status-badge.new {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+.status-badge.reviewed {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.status-badge.interview-scheduled {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.status-badge.hired {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.status-badge.rejected {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.no-results {
+  text-align: center;
+  padding: 20px;
+  color: #64748b;
+}
+
+.interview-form-section {
+  background-color: #f8fafc;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.interview-form-section h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #1e293b;
+  font-size: 1.2rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #334155;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.primary-btn {
+  background-color: #3b82f6;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.primary-btn:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+.primary-btn:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.secondary-btn {
+  background-color: white;
+  color: #3b82f6;
+  padding: 12px 24px;
+  border: 1px solid #3b82f6;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.secondary-btn:hover {
+  background-color: #f1f5f9;
+}
+
+.loading,
+.error {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: #b91c1c;
+}
+
+.time-slots-preview {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.time-slots-preview h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #334155;
+  font-size: 0.95rem;
+}
+
+.time-slot-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.time-slot-item:last-child {
+  border-bottom: none;
+}
+
+.time-slot-applicant {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.time-slot-time {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .interview-scheduling-container {
+    flex-direction: column;
+  }
+
+  .interview-scheduling-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .interview-scheduling-main-content {
+    padding: 20px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-controls {
+    flex-direction: column;
+  }
+
+  .filter-dropdowns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .filter-dropdowns select {
+    width: 100%;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    width: 100%;
+  }
+}

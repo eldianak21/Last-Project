@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -12,7 +13,7 @@ body, html {
 
 .left-section {
   flex: 40%; /* 40% width */
-  background-color: #708FD0; /* Updated color */
+  background-color: #708fd0; /* Updated color */
   color: white;
   padding: 40px;
   display: flex;
@@ -26,6 +27,7 @@ body, html {
 
 .left-section p {
   font-size: 1.2em;
+  color: white;
 }
 
 .right-section {
@@ -70,7 +72,7 @@ body, html {
 
 .login-form button {
   padding: 10px;
-  background-color: #708FD0; /* Updated color */
+  background-color: #708fd0; /* Updated color */
   color: white;
   border: none;
   border-radius: 4px;
@@ -108,28 +110,28 @@ footer {
 }
 
 .login-button button:hover {
-  background-color: #708FD0; /* Darker shade for hover */
+  background-color: #708fd0; /* Darker shade for hover */
 }
 
 /* Media Query for Mobile Devices */
 @media (max-width: 768px) {
   .container {
-      flex-direction: column; /* Stack sections vertically */
-      height: auto; /* Allow height to adjust */
+    flex-direction: column; /* Stack sections vertically */
+    height: auto; /* Allow height to adjust */
   }
 
   .left-section,
   .right-section {
-      flex: 100%; /* Full width on mobile */
-      padding: 20px; /* Adjust padding for smaller screens */
+    flex: 100%; /* Full width on mobile */
+    padding: 20px; /* Adjust padding for smaller screens */
   }
 
   .left-section h1 {
-      font-size: 1.5em; /* Slightly smaller font size */
+    font-size: 1.5em; /* Slightly smaller font size */
   }
 
   .login-form {
-      max-width: 100%; /* Allow full width in mobile view */
+    max-width: 100%; /* Allow full width in mobile view */
   }
 }
 .signup-form {
@@ -138,9 +140,9 @@ footer {
   max-width: 700px;
 }
 
-.signup-form label {
+/* .signup-form label {
   margin-top: 10px;
-}
+} */
 
 .signup-form input {
   padding: 8px;
@@ -152,7 +154,7 @@ footer {
 
 .signup-form button {
   padding: 10px;
-  background-color: #708FD0; /* Updated color */
+  background-color: #708fd0; /* Updated color */
   color: white;
   border: none;
   border-radius: 4px;

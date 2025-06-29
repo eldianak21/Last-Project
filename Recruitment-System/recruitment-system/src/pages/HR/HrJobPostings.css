@@ -1,0 +1,183 @@
+/* HrJobPostings.css */
+.hr-job-postings-container {
+  padding: 30px;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+.hr-job-postings-header {
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+}
+
+.hr-job-postings-nav {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+}
+
+.hr-job-postings-nav-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 15px;
+}
+
+.hr-job-postings-nav-link {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.hr-job-postings-nav-link:hover {
+  background-color: rgba(52, 152, 219, 0.1);
+}
+
+.hr-job-postings-alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.hr-job-postings-error {
+  background-color: #fdecea;
+  color: #d32f2f;
+  border-left: 4px solid #d32f2f;
+}
+
+.hr-job-postings-success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+.hr-job-postings-controls {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.hr-job-postings-search {
+  flex: 2;
+  min-width: 200px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.hr-job-postings-filter {
+  flex: 1;
+  min-width: 150px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 1rem;
+}
+
+.hr-job-postings-add-btn {
+  flex: 1;
+  min-width: 150px;
+  padding: 12px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.hr-job-postings-add-btn:hover {
+  background-color: #2980b9;
+}
+
+.hr-job-postings-table-container {
+  overflow-x: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+}
+
+.hr-job-postings-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hr-job-postings-table th {
+  background-color: #f8f9fa;
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #eee;
+}
+
+.hr-job-postings-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  color: #34495e;
+}
+
+.hr-job-postings-table tr:last-child td {
+  border-bottom: none;
+}
+
+.hr-job-postings-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+.hr-job-postings-action-link {
+  color: #3498db;
+  text-decoration: none;
+  margin-right: 15px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.hr-job-postings-action-link:hover {
+  color: #2980b9;
+}
+
+.hr-job-postings-action-btn {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0;
+  transition: color 0.3s;
+}
+
+.hr-job-postings-action-btn:hover {
+  color: #c0392b;
+}
+
+.hr-job-postings-empty {
+  text-align: center;
+  padding: 30px;
+  color: #7f8c8d;
+}
+
+@media (max-width: 768px) {
+  .hr-job-postings-controls {
+    flex-direction: column;
+  }
+
+  .hr-job-postings-search,
+  .hr-job-postings-filter,
+  .hr-job-postings-add-btn {
+    width: 100%;
+  }
+}

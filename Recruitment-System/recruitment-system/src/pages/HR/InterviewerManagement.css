@@ -1,0 +1,369 @@
+/* /* Main container styling - matches HRDashboard */
+.hr-manager-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
+/* Sidebar styling - matches HRDashboard exactly */
+.hr-sidebar {
+  width: 280px;
+  background: #34495e;
+  color: white;
+  position: relative;
+  z-index: 100;
+}
+
+.hr-sidebar-header {
+  padding: 20px;
+  background: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.hr-sidebar-header h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.hr-nav {
+  padding: 20px 0;
+}
+
+.hr-nav-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #ecf0f1;
+  text-decoration: none;
+  transition: all 0.3s;
+  border-left: 4px solid transparent;
+  margin: 5px 10px;
+  border-radius: 4px;
+}
+
+.hr-nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.hr-nav-link.active {
+  background: rgba(52, 152, 219, 0.2);
+  color: white;
+  border-left: 4px solid #3498db;
+}
+
+.hr-nav-icon {
+  margin-right: 12px;
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
+}
+
+/* Main content styling */
+.hr-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hr-header {
+  background: white;
+  padding: 20px 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hr-header h1 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.hr-header-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.hr-notification-btn {
+  position: relative;
+  background: none;
+  border: none;
+  color: #7f8c8d;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.hr-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #e74c3c;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hr-logout-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s;
+}
+
+.hr-logout-btn:hover {
+  background: #c0392b;
+}
+
+/* Dashboard content styling */
+.hr-dashboard-content {
+  padding: 30px;
+  flex: 1;
+}
+
+/* Form card styling */
+.hr-form-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+}
+
+.hr-form-card h2 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.hr-form-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.hr-form-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+.hr-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.hr-form-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.hr-form-btn {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.hr-form-btn:hover {
+  background: #2980b9;
+}
+
+.hr-form-btn:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+}
+
+/* Interviewers list styling */
+.hr-interviewers-list {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+.hr-interviewers-list h2 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.hr-interviewers-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hr-interviewers-table th {
+  background-color: #f8f9fa;
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #eee;
+}
+
+.hr-interviewers-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  color: #34495e;
+}
+
+.hr-interviewers-table tr:last-child td {
+  border-bottom: none;
+}
+
+.hr-interviewers-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+.hr-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.hr-danger-btn {
+  color: #e74c3c;
+}
+
+.hr-danger-btn:hover {
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.hr-danger-btn:disabled {
+  color: #95a5a6;
+  background: none;
+  cursor: not-allowed;
+}
+
+/* Search bar styling */
+.hr-search-bar {
+  margin-bottom: 20px;
+}
+
+.hr-search-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Alert messages */
+.hr-alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.hr-alert-danger {
+  background-color: #fdecea;
+  color: #d32f2f;
+  border-left: 4px solid #d32f2f;
+}
+
+.hr-alert-success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* No results message */
+.hr-no-results {
+  text-align: center;
+  color: #7f8c8d;
+  padding: 20px;
+}
+
+/* Loading message */
+.hr-loading-message {
+  text-align: center;
+  color: #7f8c8d;
+  padding: 20px;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .hr-sidebar {
+    width: 80px;
+  }
+
+  .hr-sidebar-header h2,
+  .hr-nav-link span {
+    display: none;
+  }
+
+  .hr-nav-link {
+    justify-content: center;
+    padding: 15px 0;
+    margin: 5px;
+  }
+
+  .hr-nav-icon {
+    margin-right: 0;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hr-manager-container {
+    flex-direction: column;
+  }
+
+  .hr-sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .hr-nav {
+    display: flex;
+    overflow-x: auto;
+    padding: 0;
+  }
+
+  .hr-nav-link {
+    padding: 15px 20px;
+    white-space: nowrap;
+  }
+
+  .hr-form-row {
+    flex-direction: column;
+  }
+
+  .hr-form-group {
+    width: 100%;
+  }
+
+  .hr-interviewers-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
